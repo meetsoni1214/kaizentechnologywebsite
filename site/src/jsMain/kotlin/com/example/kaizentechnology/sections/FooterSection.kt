@@ -47,11 +47,19 @@ import com.varabyte.kobweb.silk.style.toModifier
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
+
 @Composable
 fun FooterSection(
     breakpoint: Breakpoint,
     onPhoneClick: () -> Unit,
     onLocationClick: () -> Unit,
+    onLogoClick: () -> Unit,
+    onServicesClick: () -> Unit,
+    onProductsClick: () -> Unit,
+    onOurTeamClick: () -> Unit,
+    onAboutUsClick: () -> Unit,
+    onContactUsClick: () -> Unit,
+    onPrivacyPolicyClick: () -> Unit,
     onEmailClick: () -> Unit
 ) {
     Column(
@@ -68,9 +76,12 @@ fun FooterSection(
                     .fillMaxWidth()
                     .margin(top = 120.px, bottom = 24.px)
             ) {
-                FooterAbout(modifier = Modifier
+                FooterAbout(
+                    modifier = Modifier
                     .margin(bottom = 32.px)
-                    .fillMaxWidth())
+                    .fillMaxWidth(),
+                    onLogoClick = onLogoClick
+                    )
                 FooterHelpCentre(
                     modifier = Modifier
                     .fillMaxWidth(),
@@ -78,10 +89,20 @@ fun FooterSection(
                     onLocationClick = onLocationClick,
                     onPhoneClick = onPhoneClick
                 )
-                HelpfulLinks(modifier = Modifier
+                HelpfulLinks(
+                    modifier = Modifier
                     .margin(top = 32.px)
-                    .fillMaxWidth())
-                OtherLinks(modifier = Modifier.fillMaxWidth())
+                    .fillMaxWidth(),
+                    onProductsClick = onProductsClick,
+                    onServicesClick = onServicesClick,
+                    onOurTeamClick = onOurTeamClick
+                )
+                OtherLinks(
+                    modifier = Modifier.fillMaxWidth(),
+                    onContactUsClick = onContactUsClick,
+                    onPrivacyPolicyClick = onPrivacyPolicyClick,
+                    onAboutUsClick = onAboutUsClick
+                )
             }
             FooterCopyright(modifier = Modifier.margin(top = 40.px))
         } else {
@@ -91,15 +112,28 @@ fun FooterSection(
                     .margin(top = 120.px, bottom = 24.px),
                 verticalAlignment = Alignment.Top
             ) {
-                FooterAbout(modifier = Modifier.fillMaxWidth(25.percent))
+                FooterAbout(
+                    modifier = Modifier.fillMaxWidth(25.percent),
+                    onLogoClick = onLogoClick
+                )
                 FooterHelpCentre(
                     onEmailClick = onEmailClick,
                     onLocationClick = onLocationClick,
                     onPhoneClick = onPhoneClick,
                     modifier = Modifier.fillMaxWidth(25.percent)
                 )
-                HelpfulLinks(modifier = Modifier.fillMaxWidth(25.percent))
-                OtherLinks(modifier = Modifier.fillMaxWidth(25.percent))
+                HelpfulLinks(
+                    modifier = Modifier.fillMaxWidth(25.percent),
+                    onProductsClick = onProductsClick,
+                    onServicesClick = onServicesClick,
+                    onOurTeamClick = onOurTeamClick
+                )
+                OtherLinks(
+                    modifier = Modifier.fillMaxWidth(25.percent),
+                    onContactUsClick = onContactUsClick,
+                    onPrivacyPolicyClick = onPrivacyPolicyClick,
+                    onAboutUsClick = onAboutUsClick
+                )
             }
             FooterCopyright(modifier = Modifier.margin(top = 40.px))
 
@@ -108,7 +142,10 @@ fun FooterSection(
 }
 
 @Composable
-fun FooterAbout(modifier: Modifier = Modifier) {
+fun FooterAbout(
+    modifier: Modifier = Modifier,
+    onLogoClick: () -> Unit
+) {
     Column(
         modifier = modifier
     ) {
@@ -116,6 +153,7 @@ fun FooterAbout(modifier: Modifier = Modifier) {
             src = Res.Image.whiteLogo,
             description = "Logo",
             modifier = Modifier
+                .onClick { onLogoClick() }
                 .margin(bottom = 8.px)
                 .height(100.px)
                 .width(200.px)
@@ -215,26 +253,36 @@ fun FooterHelpCentre(
 }
 
 @Composable
-fun HelpfulLinks(modifier: Modifier = Modifier) {
+fun HelpfulLinks(
+    modifier: Modifier = Modifier,
+    onServicesClick: () -> Unit,
+    onProductsClick: () -> Unit,
+    onOurTeamClick: () -> Unit
+) {
     Column(
         modifier = modifier
     ) {
         FooterTitleText(text = "Helpful Links", width = 70)
-        FooterSubTitle(text = "Our Services", modifier = Modifier.margin(bottom = 8.px))
-        FooterSubTitle(text = "Our Products", modifier = Modifier.margin(bottom = 8.px))
-        FooterSubTitle(text = "Our Team", modifier = Modifier.margin(bottom = 8.px))
+        FooterSubTitle(text = "Our Services", modifier = Modifier.margin(bottom = 8.px), onLinkClick = onServicesClick)
+        FooterSubTitle(text = "Our Products", modifier = Modifier.margin(bottom = 8.px), onLinkClick = onProductsClick)
+        FooterSubTitle(text = "Our Team", modifier = Modifier.margin(bottom = 8.px), onLinkClick = onOurTeamClick)
     }
 }
 
 @Composable
-fun OtherLinks(modifier: Modifier = Modifier) {
+fun OtherLinks(
+    modifier: Modifier = Modifier,
+    onAboutUsClick: () -> Unit,
+    onContactUsClick: () -> Unit,
+    onPrivacyPolicyClick: () -> Unit
+) {
     Column(
         modifier = modifier
             .margin(top = 50.px)
     ) {
-        FooterSubTitle(text = "About Us", modifier = Modifier.margin(bottom = 8.px))
-        FooterSubTitle(text = "Contact Us", modifier = Modifier.margin(bottom = 8.px))
-        FooterSubTitle(text = "Privacy Policy", modifier = Modifier.margin(bottom = 8.px))
+        FooterSubTitle(text = "About Us", modifier = Modifier.margin(bottom = 8.px), onLinkClick = onAboutUsClick)
+        FooterSubTitle(text = "Contact Us", modifier = Modifier.margin(bottom = 8.px), onLinkClick = onContactUsClick)
+        FooterSubTitle(text = "Privacy Policy", modifier = Modifier.margin(bottom = 8.px), onLinkClick = onPrivacyPolicyClick)
         FooterSocials()
     }
 }
@@ -301,7 +349,8 @@ fun FooterTitleText(
 @Composable
 fun FooterSubTitle(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onLinkClick: () -> Unit = {}
 ){
     SpanText(
         text = text,
@@ -309,6 +358,7 @@ fun FooterSubTitle(
             .then(modifier)
             .fontFamily(FONT_FAMILY)
             .fontSize(16.px)
+            .onClick { onLinkClick() }
             .cursor(Cursor.Pointer)
             .fontWeight(FontWeight.Medium)
     )
@@ -338,6 +388,4 @@ fun FooterCopyright(
                 .textAlign(TextAlign.Center)
         )
     }
-
-
 }

@@ -3,8 +3,9 @@ package com.example.kaizentechnology.pages
 import androidx.compose.runtime.*
 import com.example.kaizentechnology.components.NavigationItem
 import com.example.kaizentechnology.components.SidePanel
+import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.FooterSection
-import com.example.kaizentechnology.sections.HomePageHeader
+import com.example.kaizentechnology.sections.HeaderSection
 import com.example.kaizentechnology.sections.ProductsSection
 import com.example.kaizentechnology.sections.ServicesSection
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
@@ -12,9 +13,7 @@ import com.example.kaizentechnology.util.Constants.HOME_PAGE_INTRO
 import com.example.kaizentechnology.util.Res
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextAlign
-import com.varabyte.kobweb.compose.css.TextDecorationLine
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
-import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
@@ -28,23 +27,16 @@ import com.varabyte.kobweb.compose.ui.modifiers.height
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.opacity
 import com.varabyte.kobweb.compose.ui.modifiers.textAlign
-import com.varabyte.kobweb.compose.ui.modifiers.textDecorationLine
-import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.modifiers.zIndex
 import com.varabyte.kobweb.compose.ui.styleModifier
-import com.varabyte.kobweb.compose.ui.thenIf
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.graphics.Image
-import com.varabyte.kobweb.silk.components.layout.SimpleGrid
-import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
-import com.varabyte.kobweb.silk.theme.shapes.clip
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.dom.Text
 
 @Page
 @Composable
@@ -74,17 +66,28 @@ fun HomePage() {
                 content = {
                     Column {
                         NavigationItem(
-                            vertical = true
+                            vertical = true,
+                            onLinkClick = {
+                                context.router.navigateTo(it)
+                            }
                         )
                     }
 
                 }
             )
         }
-        HomePageHeader(
+        HeaderSection(
             breakpoint = breakpoint,
             onMenuOpened = { overflowOpened = true},
-            logo = Res.Image.whiteLogo
+            logo = Res.Image.whiteLogo,
+            isHomePage = true,
+            selectedItem = "Home",
+            onLogoClick = {
+                context.router.navigateTo(Screen.HomePage.route)
+            },
+            onLinkClick = {
+                context.router.navigateTo(it)
+            }
         )
         if (breakpoint > Breakpoint.SM) {
             Row(
@@ -165,6 +168,27 @@ fun HomePage() {
             },
             onPhoneClick = {
                 context.router.navigateTo("tel:7046327745")
+            },
+            onLogoClick = {
+                context.router.navigateTo(Screen.HomePage.route)
+            },
+            onServicesClick = {
+                context.router.navigateTo(Screen.ServicesPage.route)
+            },
+            onProductsClick = {
+                context.router.navigateTo(Screen.ProductsPage.route)
+            },
+            onAboutUsClick = {
+                context.router.navigateTo(Screen.AboutUsPage.route)
+            },
+            onOurTeamClick = {
+                context.router.navigateTo(Screen.AboutUsPage.route)
+            },
+            onContactUsClick = {
+                context.router.navigateTo(Screen.ContactUsPage.route)
+            },
+            onPrivacyPolicyClick = {
+                context.router.navigateTo(Screen.PrivacyPolicyPage.route)
             }
         )
     }

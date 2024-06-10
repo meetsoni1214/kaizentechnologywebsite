@@ -23,4 +23,20 @@ enum class JsTheme(
         hex = "#000000",
         rgb = Color.rgba(r = 0, g = 0, b = 0, a = 0.5f)
     ),
+    KaizenColor(
+        hex = "#0A7CBF",
+        rgb = rgb(r = 10, g = 124, b = 191)
+    ),
+    TechnoColor(
+        hex = "#25A9E0",
+        rgb = rgb(r = 37, g = 169, b = 224)
+    ),
+    GreenroomsColor(
+        hex = "#15903C",
+        rgb = rgb(r = 21, g = 144, b = 60)
+    ),
+    PIGColor(
+        hex = "#E77817",
+        rgb = rgb(r = 231, g = 120, b = 23)
+    )
 }

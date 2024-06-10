@@ -20,6 +20,7 @@ object Res {
         const val whiteLogo = "/white_logo.png"
         const val logo = "/kaizen_logo.png"
         const val headerImage = "/header_image.png"
+        const val productBannerImage = "/product_page_banner.png"
         const val adminSupport = "/admin-support.png"
         const val lockKey = "/lock-key.png"
         const val databaseAggregator = "/database-aggregator.png"

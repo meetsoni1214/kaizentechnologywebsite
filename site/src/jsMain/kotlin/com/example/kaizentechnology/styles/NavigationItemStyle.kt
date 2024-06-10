@@ -15,7 +15,7 @@ import com.varabyte.kobweb.silk.style.selectors.anyLink
 import com.varabyte.kobweb.silk.style.selectors.hover
 import org.jetbrains.compose.web.css.ms
 
-val NavigationItemStyle = CssStyle {
+val NavigationHomeItemStyle = CssStyle {
     base {
         Modifier
             .color(Colors.White)
@@ -24,6 +24,22 @@ val NavigationItemStyle = CssStyle {
     }
     anyLink {
         Modifier.color(Colors.White)
+    }
+    hover {
+        Modifier
+            .textDecorationLine(TextDecorationLine.Underline)
+            .color(JsTheme.Primary.rgb)
+    }
+}
+val NavigationItemStyle = CssStyle {
+    base {
+        Modifier
+            .color(Colors.Black)
+            .textDecorationLine(TextDecorationLine.None)
+            .transition(CSSTransition(property = TransitionProperty.All, duration = 300.ms))
+    }
+    anyLink {
+        Modifier.color(Colors.Black)
     }
     hover {
         Modifier

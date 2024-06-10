@@ -16,13 +16,16 @@ import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.icons.fa.FaBars
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
-import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
 @Composable
-fun HomePageHeader(
+fun HeaderSection(
     breakpoint: Breakpoint,
+    isHomePage: Boolean = true,
     onMenuOpened: () -> Unit,
+    onLinkClick: (String) -> Unit,
+    onLogoClick: () -> Unit,
+    selectedItem: String,
     logo: String
 ) {
     Box(
@@ -33,15 +36,18 @@ fun HomePageHeader(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .backgroundColor(Colors.Transparent)
+                .backgroundColor(if (isHomePage) Colors.Transparent else Colors.White)
                 .maxWidth(PAGE_WIDTH.px),
             contentAlignment = Alignment.TopStart
         ) {
             Header(
                 breakpoint = breakpoint,
                 onMenuOpened = onMenuOpened,
-                selectedItem = "home",
-                logo = logo
+                isHomePage = isHomePage,
+                selectedItem = selectedItem,
+                logo = logo,
+                onLogoClick = onLogoClick,
+                onLinkClick = onLinkClick
             )
         }
     }
@@ -51,7 +57,10 @@ fun HomePageHeader(
 fun Header(
     breakpoint: Breakpoint,
     onMenuOpened: () -> Unit,
+    isHomePage: Boolean,
     selectedItem: String,
+    onLogoClick: () -> Unit,
+    onLinkClick: (String) -> Unit,
     logo: String
 ) {
     Row(
@@ -63,7 +72,7 @@ fun Header(
         if (breakpoint <= Breakpoint.MD) {
             FaBars(
                 modifier = Modifier
-                    .color(Colors.White)
+                    .color(if (isHomePage) Colors.White else Colors.Black)
                     .margin(left = 24.px)
                     .cursor(Cursor.Pointer)
                     .onClick { onMenuOpened() },
@@ -80,18 +89,22 @@ fun Header(
                 src = logo,
                 description = "Logo",
                 modifier = Modifier
-                    .margin(left = if (breakpoint > Breakpoint.SM) 24.px else 4.px)
+                    .margin(left = if (breakpoint > Breakpoint.SM) { if (isHomePage) 24.px else 36.px} else { if (isHomePage) 4.px else 20.px })
                     .cursor(Cursor.Pointer)
-                    .onClick {  }
-                    .height(100.px)
-                    .width(200.px)
+                    .onClick { onLogoClick() }
+                    .height(if (isHomePage) 100.px else 50.px)
+                    .width(if (isHomePage) 200.px else 120.px)
             )
             if (breakpoint >= Breakpoint.LG) {
                 Row(
                     modifier = Modifier.margin(right = 50.px),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    NavigationItem(selectedItem = selectedItem)
+                    NavigationItem(
+                        isHomePage = isHomePage,
+                        selectedItem = selectedItem,
+                        onLinkClick = onLinkClick
+                    )
                 }
             }
         }
