@@ -11,14 +11,10 @@ import com.example.kaizentechnology.styles.NavigationItemStyle
 import com.example.kaizentechnology.styles.NavigationItemStyleSM
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
 import com.example.kaizentechnology.util.JsTheme
-import com.example.kaizentechnology.util.headerItems
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextDecorationLine
-import com.varabyte.kobweb.compose.foundation.layout.Row
-import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.color
-import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.fontWeight

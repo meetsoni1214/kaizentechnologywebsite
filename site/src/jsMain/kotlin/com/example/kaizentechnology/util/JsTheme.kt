@@ -2,6 +2,7 @@ package com.example.kaizentechnology.util
 
 import com.varabyte.kobweb.compose.ui.graphics.Color
 import com.varabyte.kobweb.compose.ui.graphics.Color.Companion.rgb
+import com.varabyte.kobweb.compose.ui.graphics.Color.Companion.rgba
 
 enum class JsTheme(
     val hex: String,
@@ -38,5 +39,9 @@ enum class JsTheme(
     PIGColor(
         hex = "#E77817",
         rgb = rgb(r = 231, g = 120, b = 23)
+    ),
+    LightGray(
+        hex = "#D9D9D9",
+        rgb = rgba(r = 217, g = 217, b = 217, a = 0.4f)
     )
 }
