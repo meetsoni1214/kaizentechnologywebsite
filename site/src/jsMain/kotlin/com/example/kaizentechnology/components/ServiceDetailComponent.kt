@@ -57,7 +57,9 @@ fun ServiceDetailComponent(
             Column {
                 ServiceTitle(
                     serviceTitle = serviceTitle,
-                    modifier = Modifier.fontSize(38.px)
+                    modifier = Modifier
+                        .margin(bottom = 24.px)
+                        .fontSize(38.px)
                 )
                 ServiceDesc(
                     serviceDesc = serviceDesc,
@@ -93,6 +95,7 @@ fun ServiceDetailComponent(
                 serviceTitle = serviceTitle,
                 modifier = Modifier
                     .fontSize(32.px)
+                    .margin(bottom = 24.px)
                     .fillMaxWidth()
             )
             ServiceDesc(
@@ -126,7 +129,9 @@ fun DynamicServiceComponent(
             Column {
                 ServiceTitle(
                     serviceTitle = serviceTitle,
-                    modifier = Modifier.fontSize(38.px)
+                    modifier = Modifier
+                        .margin(bottom = 24.px)
+                        .fontSize(38.px)
                 )
                 Row(
                     modifier = Modifier
@@ -175,6 +180,7 @@ fun DynamicServiceComponent(
             ServiceTitle(
                 serviceTitle = serviceTitle,
                 modifier = Modifier
+                    .margin(bottom = 24.px)
                     .fontSize(32.px)
                     .fillMaxWidth()
             )
@@ -218,7 +224,6 @@ fun ServiceTitle(
                 property("line-clamp", "2")
                 property("-webkit-box-orient", "vertical")
             }
-            .margin(bottom = 24.px)
     )
 }
 

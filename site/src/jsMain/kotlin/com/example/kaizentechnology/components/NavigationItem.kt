@@ -64,7 +64,7 @@ fun NavigationItem(
                             .margin(bottom = 24.px)
                     )
                     .thenIf(
-                        condition = (selectedItem == item.name),
+                        condition = (selectedItem == item.itemName),
                         other = Modifier
                             .textDecorationLine(TextDecorationLine.Underline)
                             .color(JsTheme.Primary.rgb)

@@ -3,6 +3,7 @@ package com.example.kaizentechnology.pages
 import androidx.compose.runtime.*
 import com.example.kaizentechnology.components.NavigationItem
 import com.example.kaizentechnology.components.SidePanel
+import com.example.kaizentechnology.models.HeaderItem
 import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.FooterSection
 import com.example.kaizentechnology.sections.HeaderSection
@@ -81,7 +82,7 @@ fun HomePage() {
             onMenuOpened = { overflowOpened = true},
             logo = Res.Image.whiteLogo,
             isHomePage = true,
-            selectedItem = "Home",
+            selectedItem = HeaderItem.Home.itemName,
             onLogoClick = {
                 context.router.navigateTo(Screen.HomePage.route)
             },

@@ -1,4 +1,4 @@
-package com.example.kaizentechnology.pages.products
+package com.example.kaizentechnology.pages
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -7,11 +7,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.kaizentechnology.components.NavigationItem
 import com.example.kaizentechnology.components.PageBanner
-import com.example.kaizentechnology.components.ProductDetailComponent
 import com.example.kaizentechnology.components.SidePanel
 import com.example.kaizentechnology.models.HeaderItem
-import com.example.kaizentechnology.models.Product
 import com.example.kaizentechnology.navigation.Screen
+import com.example.kaizentechnology.sections.AboutIntroSection
+import com.example.kaizentechnology.sections.AboutSuccessStories
 import com.example.kaizentechnology.sections.FooterSection
 import com.example.kaizentechnology.sections.HeaderSection
 import com.example.kaizentechnology.util.Res
@@ -24,9 +24,9 @@ import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 
-@Page
+@Page(routeOverride = "about-us")
 @Composable
-fun ProductsPage() {
+fun AboutUsPage() {
     val breakpoint = rememberBreakpoint()
     val context = rememberPageContext()
     var overflowOpened by remember { mutableStateOf(false) }
@@ -45,7 +45,7 @@ fun ProductsPage() {
                     Column {
                         NavigationItem(
                             vertical = true,
-                            selectedItem = HeaderItem.Products.itemName,
+                            selectedItem = HeaderItem.AboutUs.itemName,
                             onLinkClick = {
                                 context.router.navigateTo(it)
                             }
@@ -57,51 +57,19 @@ fun ProductsPage() {
         HeaderSection(
             breakpoint = breakpoint,
             isHomePage = false,
-            onMenuOpened = { overflowOpened = true},
+            onMenuOpened = { overflowOpened = true },
             logo = Res.Image.logo,
-            selectedItem = HeaderItem.Products.itemName,
-            onLogoClick = { context.router.navigateTo(Screen.HomePage.route)},
-            onLinkClick = { context.router.navigateTo(it)}
+            selectedItem = HeaderItem.AboutUs.itemName,
+            onLogoClick = { context.router.navigateTo(Screen.HomePage.route) },
+            onLinkClick = { context.router.navigateTo(it) }
         )
         PageBanner(
-            title = "Our Company Portfolio",
-            image = Res.Image.productBannerImage,
+            title = "About Us",
+            image = Res.Image.aboutUsBannerImage,
             breakpoint = breakpoint
         )
-        ProductDetailComponent(
-            product = Product.Kaizen,
-            buttonText = "Request for demo",
-            breakpoint = breakpoint,
-            onButtonClick = {
-                context.router.navigateTo("https://www.kaizenproperty.org/broker.kaizenproperty.org/index.php/guest-user-registration.html")
-            }
-        )
-        ProductDetailComponent(
-            product = Product.Techno,
-            buttonText = "Request for demo",
-            breakpoint = breakpoint,
-            isRight = true,
-            onButtonClick = {
-                context.router.navigateTo("https://www.technoproperty.in/contact")
-            }
-        )
-        ProductDetailComponent(
-            product = Product.Greenrooms,
-            buttonText = "Visit Now",
-            breakpoint = breakpoint,
-            onButtonClick = {
-                context.router.navigateTo("https://greenrooms.in/")
-            }
-        )
-        ProductDetailComponent(
-            product = Product.PIG,
-            buttonText = "Visit Now",
-            isRight = true,
-            breakpoint = breakpoint,
-            onButtonClick = {
-                context.router.navigateTo("https://greenrooms.in/")
-            }
-        )
+        AboutIntroSection(breakpoint = breakpoint)
+        AboutSuccessStories(breakpoint = breakpoint)
         FooterSection(
             breakpoint = breakpoint,
             onLocationClick = {

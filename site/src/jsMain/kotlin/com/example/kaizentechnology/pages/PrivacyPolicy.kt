@@ -1,35 +1,51 @@
-package com.example.kaizentechnology.pages.products
+package com.example.kaizentechnology.pages
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.kaizentechnology.components.NavigationItem
 import com.example.kaizentechnology.components.PageBanner
-import com.example.kaizentechnology.components.ProductDetailComponent
+import com.example.kaizentechnology.components.ServiceTitle
 import com.example.kaizentechnology.components.SidePanel
 import com.example.kaizentechnology.models.HeaderItem
-import com.example.kaizentechnology.models.Product
 import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.FooterSection
 import com.example.kaizentechnology.sections.HeaderSection
+import com.example.kaizentechnology.util.Constants.FONT_FAMILY
+import com.example.kaizentechnology.util.Constants.PRIVACY_POLICY
+import com.example.kaizentechnology.util.Id
 import com.example.kaizentechnology.util.Res
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
+import com.varabyte.kobweb.compose.ui.modifiers.fontSize
+import com.varabyte.kobweb.compose.ui.modifiers.id
+import com.varabyte.kobweb.compose.ui.modifiers.margin
+import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
+import kotlinx.browser.document
+import org.jetbrains.compose.web.css.percent
+import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.dom.Div
 
-@Page
+@Page(routeOverride = "privacy-policy")
 @Composable
-fun ProductsPage() {
+fun PrivacyPolicyPage() {
     val breakpoint = rememberBreakpoint()
     val context = rememberPageContext()
     var overflowOpened by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        document.getElementById(Id.privacyPolicyContent)?.innerHTML = PRIVACY_POLICY
+    }
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -45,7 +61,7 @@ fun ProductsPage() {
                     Column {
                         NavigationItem(
                             vertical = true,
-                            selectedItem = HeaderItem.Products.itemName,
+                            selectedItem = "Privacy Policy",
                             onLinkClick = {
                                 context.router.navigateTo(it)
                             }
@@ -57,50 +73,23 @@ fun ProductsPage() {
         HeaderSection(
             breakpoint = breakpoint,
             isHomePage = false,
-            onMenuOpened = { overflowOpened = true},
+            onMenuOpened = { overflowOpened = true },
             logo = Res.Image.logo,
-            selectedItem = HeaderItem.Products.itemName,
-            onLogoClick = { context.router.navigateTo(Screen.HomePage.route)},
-            onLinkClick = { context.router.navigateTo(it)}
+            selectedItem = "Privacy Policy",
+            onLogoClick = { context.router.navigateTo(Screen.HomePage.route) },
+            onLinkClick = { context.router.navigateTo(it) }
         )
         PageBanner(
-            title = "Our Company Portfolio",
-            image = Res.Image.productBannerImage,
+            title = "Privacy Policy",
+            image = Res.Image.privacyPolicyBannerImage,
             breakpoint = breakpoint
         )
-        ProductDetailComponent(
-            product = Product.Kaizen,
-            buttonText = "Request for demo",
-            breakpoint = breakpoint,
-            onButtonClick = {
-                context.router.navigateTo("https://www.kaizenproperty.org/broker.kaizenproperty.org/index.php/guest-user-registration.html")
-            }
-        )
-        ProductDetailComponent(
-            product = Product.Techno,
-            buttonText = "Request for demo",
-            breakpoint = breakpoint,
-            isRight = true,
-            onButtonClick = {
-                context.router.navigateTo("https://www.technoproperty.in/contact")
-            }
-        )
-        ProductDetailComponent(
-            product = Product.Greenrooms,
-            buttonText = "Visit Now",
-            breakpoint = breakpoint,
-            onButtonClick = {
-                context.router.navigateTo("https://greenrooms.in/")
-            }
-        )
-        ProductDetailComponent(
-            product = Product.PIG,
-            buttonText = "Visit Now",
-            isRight = true,
-            breakpoint = breakpoint,
-            onButtonClick = {
-                context.router.navigateTo("https://greenrooms.in/")
-            }
+        Div(
+            attrs = Modifier
+                .fillMaxWidth(90.percent)
+                .id(Id.privacyPolicyContent)
+                .fontFamily(FONT_FAMILY)
+                .toAttrs()
         )
         FooterSection(
             breakpoint = breakpoint,

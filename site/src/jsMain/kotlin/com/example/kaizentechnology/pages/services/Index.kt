@@ -11,6 +11,7 @@ import com.example.kaizentechnology.components.PageBanner
 import com.example.kaizentechnology.components.ServiceDetailComponent
 import com.example.kaizentechnology.components.SidePanel
 import com.example.kaizentechnology.models.DynamicService
+import com.example.kaizentechnology.models.HeaderItem
 import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.FooterSection
 import com.example.kaizentechnology.sections.HeaderSection
@@ -46,7 +47,7 @@ fun ServicesPage() {
                     Column {
                         NavigationItem(
                             vertical = true,
-                            selectedItem = "Services",
+                            selectedItem = HeaderItem.Services.itemName,
                             onLinkClick = {
                                 context.router.navigateTo(it)
                             }
@@ -60,7 +61,7 @@ fun ServicesPage() {
             isHomePage = false,
             onMenuOpened = { overflowOpened = true },
             logo = Res.Image.logo,
-            selectedItem = "Services",
+            selectedItem = HeaderItem.Services.itemName,
             onLogoClick = { context.router.navigateTo(Screen.HomePage.route) },
             onLinkClick = { context.router.navigateTo(it) }
         )
