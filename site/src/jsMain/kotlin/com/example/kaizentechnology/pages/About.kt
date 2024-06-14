@@ -7,7 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.kaizentechnology.components.NavigationItem
 import com.example.kaizentechnology.components.PageBanner
-import com.example.kaizentechnology.components.SidePanel
+import com.example.kaizentechnology.components.OverflowSidePanel
 import com.example.kaizentechnology.models.HeaderItem
 import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.AboutIntroSection
@@ -37,7 +37,7 @@ fun AboutUsPage() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (overflowOpened) {
-            SidePanel(
+            OverflowSidePanel(
                 onMenuClosed = {
                     overflowOpened = false
                 },

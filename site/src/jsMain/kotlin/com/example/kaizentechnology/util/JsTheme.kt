@@ -43,5 +43,9 @@ enum class JsTheme(
     LightGray(
         hex = "#D9D9D9",
         rgb = rgba(r = 217, g = 217, b = 217, a = 0.4f)
-    )
+    ),
+    LighterGray(
+    hex = "#FAFAFA",
+    rgb = rgb(r = 250, g = 250, b = 250)
+    ),
 }

@@ -9,6 +9,7 @@ import com.example.kaizentechnology.styles.KaizenButtonStyle
 import com.example.kaizentechnology.styles.PIGButtonStyle
 import com.example.kaizentechnology.styles.TechnoButtonStyle
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
+import com.example.kaizentechnology.util.Id
 import com.example.kaizentechnology.util.JsTheme
 import com.example.kaizentechnology.util.Res
 import com.example.kaizentechnology.util.noBorder
@@ -51,7 +52,8 @@ import org.jetbrains.compose.web.dom.TextArea
 
 @Composable
 fun ContactUsFormSection(
-    breakpoint: Breakpoint
+    breakpoint: Breakpoint,
+    onClick: () -> Unit
 ) {
     if (breakpoint > Breakpoint.MD) {
         Row(
@@ -64,7 +66,10 @@ fun ContactUsFormSection(
                 modifier = Modifier
                     .margin(right = 40.px)
             )
-            InputTextFields(breakpoint = breakpoint)
+            InputTextFields(
+                breakpoint = breakpoint,
+                onClick = onClick
+            )
         }
     } else {
         Column(
@@ -78,14 +83,18 @@ fun ContactUsFormSection(
                     .width(340.px)
                     .height(330.px)
             )
-            InputTextFields(breakpoint = breakpoint)
+            InputTextFields(
+                breakpoint = breakpoint,
+                onClick = onClick
+            )
         }
     }
 }
 
 @Composable
 fun InputTextFields(
-    breakpoint: Breakpoint
+    breakpoint: Breakpoint,
+    onClick: () -> Unit
 ) {
     Column() {
         SpanText(
@@ -130,7 +139,7 @@ fun InputTextFields(
             attrs = InputTextFieldStyle.toModifier()
 //                    .fillMaxWidth()
                 .height(54.px)
-//                    .id(Id.titleInput)
+                    .id(Id.mobileInput)
                 .margin(bottom = 24.px)
                 .padding(leftRight = 20.px)
                 .backgroundColor(JsTheme.LightGray.rgb)
@@ -154,7 +163,7 @@ fun InputTextFields(
             attrs = InputTextFieldStyle.toModifier()
 //                    .fillMaxWidth()
                 .height(54.px)
-//                    .id(Id.titleInput)
+                    .id(Id.emailInput)
                 .margin(bottom = 24.px)
                 .padding(leftRight = 20.px)
                 .backgroundColor(JsTheme.LightGray.rgb)
@@ -176,7 +185,7 @@ fun InputTextFields(
 //                    .fillMaxWidth()
                 .height(150.px)
                 .width(300.px)
-//                    .id(Id.titleInput)
+                    .id(Id.messageInput)
                 .margin(bottom = 24.px)
                 .padding(leftRight = 20.px, top = 20.px)
                 .backgroundColor(JsTheme.LightGray.rgb)
@@ -196,6 +205,7 @@ fun InputTextFields(
         Button(
             attrs = ContactUsButtonStyle.toModifier()
                 .onClick {
+                    onClick()
                 }
                 .height(40.px)
                 .padding(leftRight = 24.px, topBottom = 8.px)
@@ -223,7 +233,7 @@ fun NameInputFields(
             .then(modifier)
 //                    .fillMaxWidth()
             .height(54.px)
-//                    .id(Id.titleInput)
+                    .id(Id.firstNameInput)
             .padding(leftRight = 20.px)
             .backgroundColor(JsTheme.LightGray.rgb)
             .borderRadius(r = 8.px)
@@ -244,7 +254,7 @@ fun NameInputFields(
         attrs = InputTextFieldStyle.toModifier()
 //                    .fillMaxWidth()
             .height(54.px)
-//                    .id(Id.titleInput)
+                    .id(Id.lastNameInput)
             .margin(right = 24.px)
             .outline(
                 width = 0.px,

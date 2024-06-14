@@ -7,6 +7,7 @@ import com.example.kaizentechnology.util.Constants.FONT_FAMILY
 import com.example.kaizentechnology.util.JsTheme
 import com.example.kaizentechnology.util.Res
 import com.example.kaizentechnology.util.noBorder
+import com.example.kaizentechnology.util.parseDateString
 import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextAlign
@@ -46,6 +47,7 @@ import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toModifier
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
+import kotlin.js.Date
 
 
 @Composable
@@ -383,7 +385,7 @@ fun FooterCopyright(
                 .backgroundColor(Colors.White)
         )
         FooterSubTitle(
-            text = "Copyright  © 2024 Kaizen Technology | All rights reserved",
+            text = "Copyright  © ${Date.now().toLong().parseDateString()} Kaizen Technology | All rights reserved",
             modifier = Modifier
                 .textAlign(TextAlign.Center)
         )

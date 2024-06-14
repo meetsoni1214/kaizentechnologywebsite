@@ -1,22 +1,29 @@
 package com.example.kaizentechnology.pages
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import com.example.kaizentechnology.components.ContactChip
+import com.example.kaizentechnology.components.MessagePopup
 import com.example.kaizentechnology.components.NavigationItem
 import com.example.kaizentechnology.components.PageBanner
 import com.example.kaizentechnology.components.ServiceTitle
-import com.example.kaizentechnology.components.SidePanel
+import com.example.kaizentechnology.components.OverflowSidePanel
+import com.example.kaizentechnology.components.SuccessPopup
 import com.example.kaizentechnology.models.Contact
 import com.example.kaizentechnology.models.HeaderItem
+import com.example.kaizentechnology.models.Inquiry
 import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.ContactUsFormSection
 import com.example.kaizentechnology.sections.FooterSection
 import com.example.kaizentechnology.sections.HeaderSection
+import com.example.kaizentechnology.util.Id
 import com.example.kaizentechnology.util.Res
+import com.example.kaizentechnology.util.addInquiry
 import com.example.kaizentechnology.util.noBorder
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -27,23 +34,57 @@ import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.height
 import com.varabyte.kobweb.compose.ui.modifiers.margin
-import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
+import kotlinx.browser.document
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Iframe
+import org.w3c.dom.HTMLInputElement
+import org.w3c.dom.HTMLTextAreaElement
+import kotlin.js.Date
+
+data class InquiryPageUiState(
+    var id: String = "",
+    var firstName: String = "",
+    var lastName: String = "",
+    var mobile: String = "",
+    var email: String = "",
+    var message: String = "",
+    var messagePopup: Boolean = false,
+    var invalidMobile: Boolean = false,
+    var inquirySubmitted: Boolean = false
+) {
+    fun reset() = this.copy(
+        id = "",
+        firstName = "",
+        lastName = "",
+        mobile = "",
+        email = "",
+        message = "",
+        messagePopup = false,
+        invalidMobile = false,
+        inquirySubmitted = false
+    )
+}
 
 @Page(routeOverride = "contact-us")
 @Composable
 fun ContactUsPage() {
     val breakpoint = rememberBreakpoint()
     val context = rememberPageContext()
+    val scope = rememberCoroutineScope()
     var overflowOpened by remember { mutableStateOf(false) }
+    var uiState by remember { mutableStateOf(InquiryPageUiState()) }
+    LaunchedEffect(Unit) {
+        uiState = uiState.reset()
+    }
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -51,7 +92,7 @@ fun ContactUsPage() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (overflowOpened) {
-            SidePanel(
+            OverflowSidePanel(
                 onMenuClosed = {
                     overflowOpened = false
                 },
@@ -83,7 +124,56 @@ fun ContactUsPage() {
             breakpoint = breakpoint
         )
         ContactUsFormSection(
-            breakpoint = breakpoint
+            breakpoint = breakpoint,
+            onClick = {
+                uiState = uiState.copy(firstName = (document.getElementById(Id.firstNameInput) as HTMLInputElement).value)
+                uiState = uiState.copy(lastName = (document.getElementById(Id.lastNameInput) as HTMLInputElement).value)
+                uiState = uiState.copy(mobile = (document.getElementById(Id.mobileInput) as HTMLInputElement).value)
+                uiState = uiState.copy(email = (document.getElementById(Id.emailInput) as HTMLInputElement).value)
+                uiState = uiState.copy(message = (document.getElementById(Id.messageInput) as HTMLTextAreaElement).value)
+
+                if (uiState.firstName.isNotEmpty() &&
+                    uiState.lastName.isNotEmpty() &&
+                    uiState.mobile.isNotEmpty() &&
+                    uiState.message.isNotEmpty()) {
+                    if (uiState.mobile.length == 10) {
+                        scope.launch {
+                            val result = addInquiry(
+                                Inquiry(
+                                    firstName = uiState.firstName,
+                                    lastName = uiState.lastName,
+                                    mobile = uiState.mobile,
+                                    email = uiState.email,
+                                    date = Date.now(),
+                                    message = uiState.message
+                                )
+                            )
+                            if (result) {
+                                uiState = uiState.copy(inquirySubmitted = true)
+                                delay(3000)
+                                uiState = uiState.copy(inquirySubmitted = false)
+                                (document.getElementById(Id.firstNameInput) as HTMLInputElement).value = ""
+                                (document.getElementById(Id.lastNameInput) as HTMLInputElement).value = ""
+                                (document.getElementById(Id.mobileInput) as HTMLInputElement).value = ""
+                                (document.getElementById(Id.emailInput) as HTMLInputElement).value = ""
+                                (document.getElementById(Id.messageInput) as HTMLTextAreaElement).value = ""
+                            }
+                        }
+                    } else {
+                        scope.launch {
+                            uiState = uiState.copy(invalidMobile = true)
+                            delay(2000)
+                            uiState = uiState.copy(invalidMobile = false)
+                        }
+                    }
+                } else {
+                    scope.launch {
+                        uiState = uiState.copy(messagePopup = true)
+                        delay(2000)
+                        uiState = uiState.copy(messagePopup = false)
+                    }
+                }
+            }
         )
         SimpleGrid(
             modifier = Modifier.fillMaxWidth(90.percent),
@@ -150,5 +240,20 @@ fun ContactUsPage() {
                 context.router.navigateTo(Screen.PrivacyPolicyPage.route)
             }
         )
+    }
+    if (uiState.messagePopup) {
+        MessagePopup(
+            message = "Please fill out the required fields!",
+            onDialogDismiss = { uiState = uiState.copy(messagePopup = false)}
+        )
+    }
+    if (uiState.invalidMobile) {
+        MessagePopup(
+            message = "Please enter valid mobile number!",
+            onDialogDismiss = { uiState = uiState.copy(invalidMobile = false)}
+        )
+    }
+    if (uiState.inquirySubmitted) {
+        SuccessPopup()
     }
 }

@@ -8,9 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.kaizentechnology.components.NavigationItem
 import com.example.kaizentechnology.components.PageBanner
-import com.example.kaizentechnology.components.ServiceTitle
-import com.example.kaizentechnology.components.SidePanel
-import com.example.kaizentechnology.models.HeaderItem
+import com.example.kaizentechnology.components.OverflowSidePanel
 import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.FooterSection
 import com.example.kaizentechnology.sections.HeaderSection
@@ -25,16 +23,13 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
-import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.id
-import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.percent
-import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Div
 
 @Page(routeOverride = "privacy-policy")
@@ -53,7 +48,7 @@ fun PrivacyPolicyPage() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (overflowOpened) {
-            SidePanel(
+            OverflowSidePanel(
                 onMenuClosed = {
                     overflowOpened = false
                 },

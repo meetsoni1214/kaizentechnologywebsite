@@ -9,7 +9,7 @@ import com.example.kaizentechnology.components.DynamicServiceComponent
 import com.example.kaizentechnology.components.NavigationItem
 import com.example.kaizentechnology.components.PageBanner
 import com.example.kaizentechnology.components.ServiceDetailComponent
-import com.example.kaizentechnology.components.SidePanel
+import com.example.kaizentechnology.components.OverflowSidePanel
 import com.example.kaizentechnology.models.DynamicService
 import com.example.kaizentechnology.models.HeaderItem
 import com.example.kaizentechnology.navigation.Screen
@@ -39,7 +39,7 @@ fun ServicesPage() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (overflowOpened) {
-            SidePanel(
+            OverflowSidePanel(
                 onMenuClosed = {
                     overflowOpened = false
                 },
