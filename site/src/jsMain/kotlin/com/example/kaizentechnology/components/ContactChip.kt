@@ -11,6 +11,7 @@ import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
+import com.varabyte.kobweb.compose.ui.modifiers.borderRadius
 import com.varabyte.kobweb.compose.ui.modifiers.color
 import com.varabyte.kobweb.compose.ui.modifiers.cursor
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
@@ -42,6 +43,7 @@ fun ContactChip(
         verticalAlignment = Alignment.CenterVertically,
         modifier = ContactChipStyle.toModifier()
             .backgroundColor(JsTheme.LightGray.rgb)
+            .borderRadius(8.px)
             .margin(topBottom = 12.px)
             .onClick { onClick() }
             .fillMaxWidth(if (breakpoint > Breakpoint.MD) 85.percent else 97.percent)

@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.kaizentechnology.models.Inquiry
+import com.example.kaizentechnology.styles.InquiryStyle
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
 import com.example.kaizentechnology.util.JsTheme
 import com.example.kaizentechnology.util.parseDate
@@ -41,6 +42,7 @@ import com.varabyte.kobweb.silk.components.icons.fa.FaTrashCan
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
+import com.varabyte.kobweb.silk.style.toModifier
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.CheckboxInput
@@ -56,7 +58,7 @@ fun InquiryComponent (
 ) {
     var checked by remember(selectableMode) { mutableStateOf(false) }
     Column(
-        modifier = Modifier
+        modifier = InquiryStyle.toModifier()
 //            .fillMaxWidth(90.percent)
             .width(if (breakpoint > Breakpoint.MD) 270.px else 300.px)
             .margin(bottom = 24.px)
@@ -111,7 +113,6 @@ fun InquiryComponent (
                     size = IconSize.XL
                 )
             }
-
         }
         Column(
             modifier = Modifier

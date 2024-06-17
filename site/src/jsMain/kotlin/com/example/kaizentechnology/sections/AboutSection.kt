@@ -3,13 +3,16 @@ package com.example.kaizentechnology.sections
 import androidx.compose.runtime.Composable
 import com.example.kaizentechnology.pages.TitleText
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
+import com.example.kaizentechnology.util.JsTheme
 import com.example.kaizentechnology.util.Res
+import com.example.kaizentechnology.util.noBorder
 import com.varabyte.kobweb.compose.css.FontStyle
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
@@ -20,6 +23,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.components.graphics.Image
+import com.varabyte.kobweb.silk.components.layout.HorizontalDivider
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import org.jetbrains.compose.web.css.percent
@@ -87,7 +91,14 @@ fun AboutSuccessStories(
             title = "Success Stories",
             modifier = Modifier
                 .fillMaxWidth()
-                .margin(bottom = 18.px)
+        )
+        HorizontalDivider(
+            modifier = Modifier
+                .width(200.px)
+                .height(2.px)
+                .noBorder()
+                .backgroundColor(JsTheme.Primary.rgb)
+                .margin(top = 24.px, bottom = 24.px)
         )
         SpanText(
             text = "Failure Paves the Way to Success",

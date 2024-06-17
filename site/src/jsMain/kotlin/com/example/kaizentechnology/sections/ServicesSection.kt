@@ -10,14 +10,16 @@ import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 
 @Composable
-fun ServicesSection() {
+fun ServicesSection(
+    breakpoint: Breakpoint
+) {
     SimpleGrid(
         modifier = Modifier
             .fillMaxWidth(),
-        numColumns = numColumns(base = 1, md = 2, lg = 3)
+        numColumns = numColumns(base = 1, md = 2, lg = 3),
     ) {
        Service.entries.forEach { service ->
-           ServiceComponent(logo = service.logo, service = service.serviceName)
+           ServiceComponent(logo = service.logo, service = service.serviceName, breakpoint = breakpoint)
        }
     }
 }

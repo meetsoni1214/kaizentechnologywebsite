@@ -18,6 +18,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.height
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.text.SpanText
+import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toModifier
 import org.jetbrains.compose.web.css.px
 import kotlin.math.log
@@ -25,11 +26,12 @@ import kotlin.math.log
 @Composable
 fun ServiceComponent(
     logo: String,
-    service: String
+    service: String,
+    breakpoint: Breakpoint
 ) {
     Column(
         modifier = ServiceItemStyle.toModifier()
-            .margin(bottom = 24.px)
+            .margin(bottom = if (breakpoint > Breakpoint.MD) 24.px else 60.px)
             .cursor(Cursor.Pointer)
             .fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
@@ -39,7 +41,7 @@ fun ServiceComponent(
             src = logo,
             description = "services",
             modifier = Modifier
-                .height(150.px)
+                .height(100.px)
                 .margin(bottom = 8.px)
         )
         SpanText(
@@ -47,7 +49,7 @@ fun ServiceComponent(
             modifier = Modifier
                 .fontFamily(FONT_FAMILY)
                 .fontSize(24.px)
-                .fontWeight(FontWeight.SemiBold)
+                .fontWeight(FontWeight.Medium)
         )
     }
 }

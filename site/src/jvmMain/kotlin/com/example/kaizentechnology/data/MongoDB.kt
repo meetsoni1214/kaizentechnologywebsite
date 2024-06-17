@@ -18,11 +18,16 @@ fun initMongoDB(context: InitApiContext) {
         "org.litote.mongo.test.mapping.service",
         "org.litote.kmongo.serialization.SerializationClassMappingTypeService"
     )
+//    System.getenv().forEach { (key, value) ->
+//        if (key != null && key == "MONGODB_URI") {
+//            context.data.add(MongoDB(context))
+//        }
+//    }
     context.data.add(MongoDB(context))
 }
 
 class MongoDB(private val context: InitApiContext): MongoRepository {
-    private val client = MongoClient.create()
+    private val client = MongoClient.create("mongodb+srv://kaizenuser:meetsoni@cluster0.heeoxqg.mongodb.net/")
     private val database = client.getDatabase(DATABASE_NAME)
     private val userCollection = database.getCollection<User>("user")
     private val inquiryCollection = database.getCollection<Inquiry>("inquiry")

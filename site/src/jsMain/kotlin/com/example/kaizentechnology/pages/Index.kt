@@ -7,11 +7,14 @@ import com.example.kaizentechnology.models.HeaderItem
 import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.FooterSection
 import com.example.kaizentechnology.sections.HeaderSection
+import com.example.kaizentechnology.sections.LearnMoreSection
 import com.example.kaizentechnology.sections.ProductsSection
 import com.example.kaizentechnology.sections.ServicesSection
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
 import com.example.kaizentechnology.util.Constants.HOME_PAGE_INTRO
+import com.example.kaizentechnology.util.JsTheme
 import com.example.kaizentechnology.util.Res
+import com.example.kaizentechnology.util.noBorder
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
@@ -19,6 +22,7 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
@@ -28,11 +32,13 @@ import com.varabyte.kobweb.compose.ui.modifiers.height
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.opacity
 import com.varabyte.kobweb.compose.ui.modifiers.textAlign
+import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.modifiers.zIndex
 import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.graphics.Image
+import com.varabyte.kobweb.silk.components.layout.HorizontalDivider
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
@@ -49,7 +55,7 @@ fun HomePage() {
         modifier = Modifier
             .height(if (breakpoint > Breakpoint.SM) 600.px else 300.px)
             .fillMaxWidth(),
-        src = Res.Image.headerImage,
+        src = "/real-estate-banner-home.avif",
         description = "Header Image"
     )
     Column(
@@ -94,7 +100,7 @@ fun HomePage() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .margin(top = 524.px),
+                    .margin(top = 600.px),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 HomePageIntro(
@@ -117,21 +123,47 @@ fun HomePage() {
             title = "Our Services",
             modifier = Modifier
                 .fillMaxWidth()
-                .margin(bottom = 32.px, top = 42.px)
+                .margin(top = 100.px)
         )
-        ServicesSection()
+        HorizontalDivider(
+            modifier = Modifier
+                .width(150.px)
+                .height(2.px)
+                .noBorder()
+                .backgroundColor(JsTheme.Primary.rgb)
+                .margin(top = 24.px, bottom = 40.px)
+        )
+        ServicesSection(
+            breakpoint = breakpoint
+        )
         TitleText(
             title = "Our Products",
             modifier = Modifier
                 .fillMaxWidth()
-                .margin(topBottom = 32.px)
+                .margin(top = if (breakpoint > Breakpoint.MD) 100.px else 70.px)
+        )
+        HorizontalDivider(
+            modifier = Modifier
+                .width(150.px)
+                .height(2.px)
+                .noBorder()
+                .backgroundColor(JsTheme.Primary.rgb)
+                .margin(top = 24.px, bottom = 32.px)
         )
         ProductsSection(breakpoint = breakpoint)
         TitleText(
             title = "The Team That You Need",
             modifier = Modifier
                 .fillMaxWidth(90.percent)
-                .margin(bottom = 12.px, top = 42.px)
+                .margin(top = 100.px)
+        )
+        HorizontalDivider(
+            modifier = Modifier
+                .width(200.px)
+                .height(2.px)
+                .noBorder()
+                .backgroundColor(JsTheme.Primary.rgb)
+                .margin(top = 24.px, bottom = 32.px)
         )
         SpanText(
             text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis ",
@@ -150,14 +182,22 @@ fun HomePage() {
                     property("line-clamp", "6")
                     property("-webkit-box-orient", "vertical")
                 },
-//                .textDecorationLine(TextDecorationLine.Underline)
         )
         Image(
-            src = Res.Image.headerImage,
+            src = "/team.jpg",
             description = "Kaizen Technology Team",
             modifier = Modifier
                 .margin(bottom = 32.px)
                 .fillMaxWidth(90.percent)
+        )
+        LearnMoreSection(
+            breakpoint = breakpoint,
+            onLearnMoreClick = {
+                context.router.navigateTo(Screen.AboutUsPage.route)
+            },
+            onNumberClick = {
+                context.router.navigateTo("tel:7046327745")
+            }
         )
         FooterSection(
             breakpoint = breakpoint,
@@ -236,7 +276,7 @@ fun HomePage() {
         modifier = Modifier
             .margin(left = 24.px, right = 24.px, top = if (!isSM) 0.px else 24.px, bottom = 32.px)
             .fillMaxWidth(if (!isSM) 50.percent else 90.percent),
-        src = Res.Image.headerImage,
+        src = "/home_image_intro.jpg",
         description = "Header Image"
     )
 }

@@ -92,8 +92,8 @@ fun Header(
                     .margin(left = if (breakpoint > Breakpoint.SM) { if (isHomePage) 24.px else 36.px} else { if (isHomePage) 4.px else 20.px })
                     .cursor(Cursor.Pointer)
                     .onClick { onLogoClick() }
-                    .height(if (isHomePage) 100.px else 50.px)
-                    .width(if (isHomePage) 200.px else 120.px)
+                    .height(if (isHomePage) 100.px else 60.px)
+                    .width(if (isHomePage) 230.px else 160.px)
             )
             if (breakpoint >= Breakpoint.LG) {
                 Row(

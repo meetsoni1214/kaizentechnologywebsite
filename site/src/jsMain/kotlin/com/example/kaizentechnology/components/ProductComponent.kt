@@ -49,7 +49,7 @@ fun ProductComponent(
                 color = JsTheme.Secondary.rgb
             )
             .margin(topBottom = 12.px)
-            .padding(top = if (product.name == "Greenrooms") 90.px else 16.px, bottom = 16.px, leftRight = 16.px)
+            .padding(top = if (product.name == "Greenrooms") 67.px else 16.px, bottom = 16.px, leftRight = 16.px)
            .borderRadius(15.px)
             .fillMaxWidth(85.percent),
         verticalArrangement = Arrangement.Center,
@@ -73,15 +73,15 @@ fun ProductComponent(
                 .margin(top = if (product.name == "Greenrooms") 48.px else 0.px),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            SpanText(
-                text = product.productName,
-                modifier = Modifier
-                    .fontFamily(FONT_FAMILY)
-                    .fontSize(24.px)
-                    .textAlign(TextAlign.Center)
-                    .margin(bottom = 16.px)
-                    .fontWeight(FontWeight.SemiBold)
-            )
+//            SpanText(
+//                text = product.productName,
+//                modifier = Modifier
+//                    .fontFamily(FONT_FAMILY)
+//                    .fontSize(24.px)
+//                    .textAlign(TextAlign.Center)
+//                    .margin(bottom = 16.px)
+//                    .fontWeight(FontWeight.SemiBold)
+//            )
             Button(
                 attrs = ProductItemButtonStyle.toModifier()
                     .onClick {

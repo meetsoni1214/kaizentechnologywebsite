@@ -179,7 +179,6 @@ fun InquiriesContent() {
                         .fontFamily(FONT_FAMILY)
                         .color(if (selectableMode) Colors.Black else JsTheme.HalfBlack.rgb),
                     text = switchText
-
                 )
             }
                 SimpleGrid(

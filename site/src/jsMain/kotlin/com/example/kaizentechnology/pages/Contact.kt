@@ -190,7 +190,7 @@ fun ContactUsPage() {
             }
         }
         ServiceTitle(
-            serviceTitle = "Reach out to our Office",
+            serviceTitle = "Reach out to Office",
             modifier = Modifier
                 .fillMaxWidth(90.percent)
                 .margin(top = 32.px, bottom = 24.px)

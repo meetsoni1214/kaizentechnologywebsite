@@ -100,7 +100,9 @@ fun FooterSection(
                     onOurTeamClick = onOurTeamClick
                 )
                 OtherLinks(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .margin(top = 32.px)
+                        .fillMaxWidth(),
                     onContactUsClick = onContactUsClick,
                     onPrivacyPolicyClick = onPrivacyPolicyClick,
                     onAboutUsClick = onAboutUsClick
@@ -115,23 +117,23 @@ fun FooterSection(
                 verticalAlignment = Alignment.Top
             ) {
                 FooterAbout(
-                    modifier = Modifier.fillMaxWidth(25.percent),
+                    modifier = Modifier.fillMaxWidth(30.percent),
                     onLogoClick = onLogoClick
                 )
                 FooterHelpCentre(
                     onEmailClick = onEmailClick,
                     onLocationClick = onLocationClick,
                     onPhoneClick = onPhoneClick,
-                    modifier = Modifier.fillMaxWidth(25.percent)
+                    modifier = Modifier.fillMaxWidth(30.percent)
                 )
                 HelpfulLinks(
-                    modifier = Modifier.fillMaxWidth(25.percent),
+                    modifier = Modifier.fillMaxWidth(20.percent),
                     onProductsClick = onProductsClick,
                     onServicesClick = onServicesClick,
                     onOurTeamClick = onOurTeamClick
                 )
                 OtherLinks(
-                    modifier = Modifier.fillMaxWidth(25.percent),
+                    modifier = Modifier.fillMaxWidth(20.percent),
                     onContactUsClick = onContactUsClick,
                     onPrivacyPolicyClick = onPrivacyPolicyClick,
                     onAboutUsClick = onAboutUsClick
@@ -152,13 +154,14 @@ fun FooterAbout(
         modifier = modifier
     ) {
         Image(
-            src = Res.Image.whiteLogo,
+//            src = Res.Image.whiteLogo,
+            src = "/white-logo-footer.png",
             description = "Logo",
             modifier = Modifier
                 .onClick { onLogoClick() }
                 .margin(bottom = 8.px)
-                .height(100.px)
-                .width(200.px)
+                .height(60.px)
+                .width(230.px)
         )
         SpanText(
             text = "Kaizen property group is an organization with the unique understanding of real estate field." +
@@ -280,8 +283,8 @@ fun OtherLinks(
 ) {
     Column(
         modifier = modifier
-            .margin(top = 50.px)
     ) {
+        FooterTitleText(text = "Quick Links", width = 70)
         FooterSubTitle(text = "About Us", modifier = Modifier.margin(bottom = 8.px), onLinkClick = onAboutUsClick)
         FooterSubTitle(text = "Contact Us", modifier = Modifier.margin(bottom = 8.px), onLinkClick = onContactUsClick)
         FooterSubTitle(text = "Privacy Policy", modifier = Modifier.margin(bottom = 8.px), onLinkClick = onPrivacyPolicyClick)

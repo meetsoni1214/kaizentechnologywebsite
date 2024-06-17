@@ -85,6 +85,7 @@ fun ContactUsFormSection(
             )
             InputTextFields(
                 breakpoint = breakpoint,
+                modifier = Modifier.fillMaxWidth(),
                 onClick = onClick
             )
         }
@@ -93,10 +94,13 @@ fun ContactUsFormSection(
 
 @Composable
 fun InputTextFields(
+    modifier: Modifier = Modifier,
     breakpoint: Breakpoint,
     onClick: () -> Unit
 ) {
-    Column() {
+    Column(
+        modifier = modifier
+    ) {
         SpanText(
             text = "Any Queries? Feel free to ask",
             modifier = Modifier
@@ -114,77 +118,59 @@ fun InputTextFields(
         if (breakpoint > Breakpoint.MD) {
             Row(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .margin(bottom = 24.px),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 NameInputFields(
                     modifier = Modifier
-                        .margin(right = 24.px)
+                        .margin(right = 24.px),
+                    breakpoint = breakpoint
                 )
             }
         } else {
             Column(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .margin(bottom = 24.px),
             ) {
                 NameInputFields(
                     modifier = Modifier
-                        .margin(bottom = 24.px)
+                        .margin(bottom = 24.px),
+                    breakpoint = breakpoint
                 )
             }
         }
-
-        Input(
-            type = InputType.Number,
-            attrs = InputTextFieldStyle.toModifier()
-//                    .fillMaxWidth()
-                .height(54.px)
-                    .id(Id.mobileInput)
-                .margin(bottom = 24.px)
-                .padding(leftRight = 20.px)
-                .backgroundColor(JsTheme.LightGray.rgb)
-                .borderRadius(r = 8.px)
-                .fontFamily(FONT_FAMILY)
-                .outline(
-                    width = 0.px,
-                    style = LineStyle.None,
-                    color = Colors.Transparent
+        if (breakpoint > Breakpoint.MD) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .margin(bottom = 24.px),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                ContactInputFields(
+                    modifier = Modifier
+                        .margin(right = 24.px),
+                    breakpoint = breakpoint
                 )
-                .fontSize(16.px)
-                .toAttrs {
-                    attr("placeholder", "Mobile Number")
-                    attr("minlength", "10")
-                    attr("maxlength", "10")
-//                        attr("value", uiState.title)
-                }
-        )
-        Input(
-            type = InputType.Email,
-            attrs = InputTextFieldStyle.toModifier()
-//                    .fillMaxWidth()
-                .height(54.px)
-                    .id(Id.emailInput)
-                .margin(bottom = 24.px)
-                .padding(leftRight = 20.px)
-                .backgroundColor(JsTheme.LightGray.rgb)
-                .borderRadius(r = 8.px)
-                .fontFamily(FONT_FAMILY)
-                .outline(
-                    width = 0.px,
-                    style = LineStyle.None,
-                    color = Colors.Transparent
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .margin(bottom = 24.px),
+            ) {
+                ContactInputFields(
+                    modifier = Modifier
+                        .margin(bottom = 24.px),
+                    breakpoint = breakpoint
                 )
-                .fontSize(16.px)
-                .toAttrs {
-                    attr("placeholder", "Email")
-//                        attr("value", uiState.title)
-                }
-        )
+            }
+        }
         TextArea(
             attrs = InputTextFieldStyle.toModifier()
-//                    .fillMaxWidth()
+                    .fillMaxWidth()
                 .height(150.px)
-                .width(300.px)
                     .id(Id.messageInput)
                 .margin(bottom = 24.px)
                 .padding(leftRight = 20.px, top = 20.px)
@@ -199,7 +185,6 @@ fun InputTextFields(
                 )
                 .toAttrs {
                     attr("placeholder", "How can we help ?")
-//                        attr("value", uiState.title)
                 }
         )
         Button(
@@ -208,6 +193,7 @@ fun InputTextFields(
                     onClick()
                 }
                 .height(40.px)
+                .borderRadius(8.px)
                 .padding(leftRight = 24.px, topBottom = 8.px)
                 .cursor(Cursor.Pointer)
                 .toAttrs()
@@ -225,13 +211,14 @@ fun InputTextFields(
 
 @Composable
 fun NameInputFields(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    breakpoint: Breakpoint
 ) {
     Input(
         type = InputType.Text,
         attrs = InputTextFieldStyle.toModifier()
             .then(modifier)
-//                    .fillMaxWidth()
+            .fillMaxWidth(if (breakpoint > Breakpoint.MD) 60.percent else 100.percent)
             .height(54.px)
                     .id(Id.firstNameInput)
             .padding(leftRight = 20.px)
@@ -246,16 +233,14 @@ fun NameInputFields(
             .fontSize(16.px)
             .toAttrs {
                 attr("placeholder", "First Name")
-//                        attr("value", uiState.title)
             }
     )
     Input(
         type = InputType.Text,
         attrs = InputTextFieldStyle.toModifier()
-//                    .fillMaxWidth()
+            .fillMaxWidth(if (breakpoint > Breakpoint.MD) 60.percent else 100.percent)
             .height(54.px)
                     .id(Id.lastNameInput)
-            .margin(right = 24.px)
             .outline(
                 width = 0.px,
                 style = LineStyle.None,
@@ -268,7 +253,56 @@ fun NameInputFields(
             .fontSize(16.px)
             .toAttrs {
                 attr("placeholder", "Last Name")
-//                        attr("value", uiState.title)
+            }
+    )
+}
+
+@Composable
+fun ContactInputFields(
+    modifier: Modifier = Modifier,
+    breakpoint: Breakpoint
+) {
+    Input(
+        type = InputType.Number,
+        attrs = InputTextFieldStyle.toModifier()
+            .fillMaxWidth(if (breakpoint > Breakpoint.MD) 60.percent else 100.percent)
+            .height(54.px)
+            .id(Id.mobileInput)
+            .padding(leftRight = 20.px)
+            .then(modifier)
+            .backgroundColor(JsTheme.LightGray.rgb)
+            .borderRadius(r = 8.px)
+            .fontFamily(FONT_FAMILY)
+            .outline(
+                width = 0.px,
+                style = LineStyle.None,
+                color = Colors.Transparent
+            )
+            .fontSize(16.px)
+            .toAttrs {
+                attr("placeholder", "Mobile Number")
+                attr("minlength", "10")
+                attr("maxlength", "10")
+            }
+    )
+    Input(
+        type = InputType.Email,
+        attrs = InputTextFieldStyle.toModifier()
+            .fillMaxWidth(if (breakpoint > Breakpoint.MD) 60.percent else 100.percent)
+            .height(54.px)
+            .id(Id.emailInput)
+            .padding(leftRight = 20.px)
+            .backgroundColor(JsTheme.LightGray.rgb)
+            .borderRadius(r = 8.px)
+            .fontFamily(FONT_FAMILY)
+            .outline(
+                width = 0.px,
+                style = LineStyle.None,
+                color = Colors.Transparent
+            )
+            .fontSize(16.px)
+            .toAttrs {
+                attr("placeholder", "Email")
             }
     )
 }
