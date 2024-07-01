@@ -6,7 +6,16 @@ object Constants {
     const val FONT_FAMILY = "Arial"
     const val SIDE_PANEL_WIDTH = 250
     const val QUOTES_API_URL = "https://api.quotable.io/random"
-    const val HOME_PAGE_INTRO = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque  penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. "
+    const val HOME_PAGE_INTRO = "Welcome to the future of real estate management. At Kaizen Technology, we combine cutting-edge technology with industry expertise to provide you with the ultimate real estate software solution. Experience seamless integration, real-time updates, and intuitive features that make managing properties easier than ever before. Discover how our innovative approach can transform your real estate business and elevate your success."
+    const val ABOUT_US_TEXT = "Kaizen Technology is an organization with a unique understanding of the real estate field. Our young, dynamic, and professional team is dedicated to meeting all your real estate needs with our comprehensive software solutions, including Property Management, Property Sourcing, Property Rentals, and Accommodation Finding. We are a professionally managed organization that provides business development and admin support to real estate consultants, property owners, PG seekers, and PG owners. Our admin and software support systems are designed to revolutionize the field of real estate with the help of technology. Say goodbye to traditional ways of working—join us and enhance your profitability, productivity, and get the real feeling of convenience."
+    const val SUCCESS_STORIES_TEXT = "Discover how our innovative solutions have transformed the real estate experiences of professionals and property owners alike. From seamless property management to successful rentals and sales, read inspiring stories of increased efficiency, profitability, and client satisfaction. Join our community and become our next success story!"
+    const val FOOTER_TEXT = "Kaizen Technology is an organization with the unique understanding of real estate field. We have young, dynamic & professional team. We are here to revolutionize the field of real estate with technology."
+    const val SERVICE_DATABASE_AGGREGATOR = "Our admin staff gathers both brokers' property and requirement data from WhatsApp groups, as well as online and offline sources, and then adds that data into the Kaizen Property Software. We manage a database of properties and requirements categorized into Residential Rent, Residential Sell, Commercial Rent, Commercial Sell, Land & Plots for Rent, and Land & Plots for Sell. Additionally, we collect property data from owners through both online and offline sources and adds that data into the Techno Property Software after verifying all the details."
+    const val SERVICE_ADMIN_SUPPORT = "With our full admin support team, we will assist you at every step of your journey. Our extensive administrative staff regularly maintains the property data by making verification calls, ensuring that you receive only high-quality, accurate information. Our team is dedicated to providing comprehensive support, from the initial data collection to ongoing updates. By doing so, we ensure that the data in our software is always current and reliable. Our commitment to quality data helps streamline your operations and enhances your ability to close deals efficiently."
+    const val HOME_PAGE_TEAM_TEXT = "Our dedicated team of real estate and technology experts is here to support you every step of the way. Trust in a team that understands your needs and works tirelessly to help you achieve your goals."
+    const val MAP_LINK = "https://maps.app.goo.gl/SGEZpu4cATABGVsZA"
+    const val TEL_LINK = "tel:7046327745"
+    const val EMAIL_LINK = "mailto:support@kaizentechnology.org.in"
     const val PRIVACY_POLICY =
             "<p>Last updated: June 13, 2024</p>\n" +
             "<p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>\n" +
@@ -200,6 +209,7 @@ object Res {
         const val contactVectorImage = "/contact_us_vector.png"
         const val aboutUsBannerImage = "/about_us_banner.png"
         const val successStoriesImage = "/success_stories.png"
+        const val adminSupportService = "/admin_support_image.jpg"
         const val aboutUsIntroImage = "/about_us.png"
         const val solutionRealEstateConsultant = "/solution_real_estate_consultants.jpg"
         const val solutionPGOwner = "/solution_pg_owner.jpg"

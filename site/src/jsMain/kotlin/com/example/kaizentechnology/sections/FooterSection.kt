@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import com.example.kaizentechnology.styles.FooterIconStyle
 import com.example.kaizentechnology.styles.FooterTextStyle
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
+import com.example.kaizentechnology.util.Constants.FOOTER_TEXT
 import com.example.kaizentechnology.util.JsTheme
 import com.example.kaizentechnology.util.Res
 import com.example.kaizentechnology.util.noBorder
@@ -164,8 +165,7 @@ fun FooterAbout(
                 .width(230.px)
         )
         SpanText(
-            text = "Kaizen property group is an organization with the unique understanding of real estate field." +
-                    "We have young, dynamic & professional team.",
+            text = FOOTER_TEXT,
             modifier = Modifier
                 .fontFamily(FONT_FAMILY)
                 .fontSize(16.px)

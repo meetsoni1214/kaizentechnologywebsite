@@ -10,8 +10,12 @@ import com.example.kaizentechnology.sections.HeaderSection
 import com.example.kaizentechnology.sections.LearnMoreSection
 import com.example.kaizentechnology.sections.ProductsSection
 import com.example.kaizentechnology.sections.ServicesSection
+import com.example.kaizentechnology.util.Constants.EMAIL_LINK
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
 import com.example.kaizentechnology.util.Constants.HOME_PAGE_INTRO
+import com.example.kaizentechnology.util.Constants.HOME_PAGE_TEAM_TEXT
+import com.example.kaizentechnology.util.Constants.MAP_LINK
+import com.example.kaizentechnology.util.Constants.TEL_LINK
 import com.example.kaizentechnology.util.JsTheme
 import com.example.kaizentechnology.util.Res
 import com.example.kaizentechnology.util.noBorder
@@ -166,7 +170,7 @@ fun HomePage() {
                 .margin(top = 24.px, bottom = 32.px)
         )
         SpanText(
-            text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis ",
+            text = HOME_PAGE_TEAM_TEXT,
             modifier = Modifier
                 .fillMaxWidth()
                 .fontFamily(FONT_FAMILY)
@@ -202,13 +206,13 @@ fun HomePage() {
         FooterSection(
             breakpoint = breakpoint,
             onLocationClick = {
-                context.router.navigateTo("https://maps.app.goo.gl/SGEZpu4cATABGVsZA")
+                context.router.navigateTo(MAP_LINK)
             },
             onEmailClick = {
-                context.router.navigateTo("mailto:support@kaizentechnology.org.in")
+                context.router.navigateTo(EMAIL_LINK)
             },
             onPhoneClick = {
-                context.router.navigateTo("tel:7046327745")
+                context.router.navigateTo(TEL_LINK)
             },
             onLogoClick = {
                 context.router.navigateTo(Screen.HomePage.route)
@@ -255,7 +259,7 @@ fun HomePage() {
                 property("line-clamp", "3")
                 property("-webkit-box-orient", "vertical")
             },
-            text = "Some Heading, Some More Heading, Some Extra Heading"
+            text = "Where Technology Meets Real Estate"
         )
         SpanText(
             modifier = Modifier

@@ -2,7 +2,9 @@ package com.example.kaizentechnology.sections
 
 import androidx.compose.runtime.Composable
 import com.example.kaizentechnology.pages.TitleText
+import com.example.kaizentechnology.util.Constants.ABOUT_US_TEXT
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
+import com.example.kaizentechnology.util.Constants.SUCCESS_STORIES_TEXT
 import com.example.kaizentechnology.util.JsTheme
 import com.example.kaizentechnology.util.Res
 import com.example.kaizentechnology.util.noBorder
@@ -48,7 +50,7 @@ fun AboutIntroSection(
                     .margin(right = 32.px),
             )
             AboutUsIntroText(
-                text = "consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem",
+                text = ABOUT_US_TEXT,
                 noOfLines = "22",
                 modifier = Modifier
                     .fontSize(22.px)
@@ -68,7 +70,7 @@ fun AboutIntroSection(
                     .margin(bottom = 24.px),
             )
             AboutUsIntroText(
-                text = "consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem",
+                text = ABOUT_US_TEXT,
                 noOfLines = "22",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -109,38 +111,19 @@ fun AboutSuccessStories(
                 .fontStyle(FontStyle.Italic)
                 .margin(bottom = 24.px)
         )
-        if (breakpoint > Breakpoint.MD) {
             AboutUsIntroText(
-                text = "penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. ",
+                text = SUCCESS_STORIES_TEXT,
                 noOfLines = "10",
                 modifier = Modifier
                     .fillMaxWidth()
                     .margin(bottom = 24.px)
-                    .fontSize(22.px)
+                    .fontSize(if (breakpoint > Breakpoint.MD) 22.px else 18.px)
             )
-        } else {
-            AboutUsIntroText(
-                text = "penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. ",
-                noOfLines = "10",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .margin(bottom = 24.px)
-                    .fontSize(18.px)
-            )
-        }
-        if (breakpoint > Breakpoint.MD) {
             SuccessStoriesImage(
                 modifier = Modifier
-                    .width(1190.px)
-                    .height(957.px)
+                    .width( if (breakpoint > Breakpoint.MD) 1190.px else 352.px)
+                    .height( if (breakpoint > Breakpoint.MD) 957.px else 283.px)
             )
-        } else {
-            SuccessStoriesImage(
-                modifier = Modifier
-                    .width(352.px)
-                    .height(283.px)
-            )
-        }
     }
 }
 

@@ -21,6 +21,9 @@ import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.ContactUsFormSection
 import com.example.kaizentechnology.sections.FooterSection
 import com.example.kaizentechnology.sections.HeaderSection
+import com.example.kaizentechnology.util.Constants.EMAIL_LINK
+import com.example.kaizentechnology.util.Constants.MAP_LINK
+import com.example.kaizentechnology.util.Constants.TEL_LINK
 import com.example.kaizentechnology.util.Id
 import com.example.kaizentechnology.util.Res
 import com.example.kaizentechnology.util.addInquiry
@@ -34,6 +37,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.height
 import com.varabyte.kobweb.compose.ui.modifiers.margin
+import com.varabyte.kobweb.compose.ui.modifiers.zIndex
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.rememberPageContext
@@ -176,7 +180,9 @@ fun ContactUsPage() {
             }
         )
         SimpleGrid(
-            modifier = Modifier.fillMaxWidth(90.percent),
+            modifier = Modifier
+                .zIndex(0)
+                .fillMaxWidth(90.percent),
             numColumns = numColumns(base = 1, sm = 1, md = 2, lg = 3)
         ) {
             Contact.entries.forEach { item ->
@@ -210,13 +216,13 @@ fun ContactUsPage() {
         FooterSection(
             breakpoint = breakpoint,
             onLocationClick = {
-                context.router.navigateTo("https://maps.app.goo.gl/SGEZpu4cATABGVsZA")
+                context.router.navigateTo(MAP_LINK)
             },
             onEmailClick = {
-                context.router.navigateTo("mailto:support@kaizentechnology.org.in")
+                context.router.navigateTo(EMAIL_LINK)
             },
             onPhoneClick = {
-                context.router.navigateTo("tel:7046327745")
+                context.router.navigateTo(TEL_LINK)
             },
             onLogoClick = {
                 context.router.navigateTo(Screen.HomePage.route)

@@ -2,6 +2,7 @@ package com.example.kaizentechnology.components
 
 import androidx.compose.runtime.Composable
 import com.example.kaizentechnology.util.Constants.FONT_FAMILY
+import com.example.kaizentechnology.util.Constants.HEADER_HEIGHT
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.ui.Alignment
@@ -12,6 +13,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.fontWeight
 import com.varabyte.kobweb.compose.ui.modifiers.height
 import com.varabyte.kobweb.compose.ui.modifiers.margin
+import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
@@ -26,6 +28,7 @@ fun PageBanner(
     Box(
         modifier = Modifier
             .margin(bottom = 32.px)
+            .padding(top = HEADER_HEIGHT.px)
             .fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {

@@ -15,6 +15,11 @@ import com.example.kaizentechnology.models.HeaderItem
 import com.example.kaizentechnology.navigation.Screen
 import com.example.kaizentechnology.sections.FooterSection
 import com.example.kaizentechnology.sections.HeaderSection
+import com.example.kaizentechnology.util.Constants.EMAIL_LINK
+import com.example.kaizentechnology.util.Constants.MAP_LINK
+import com.example.kaizentechnology.util.Constants.SERVICE_ADMIN_SUPPORT
+import com.example.kaizentechnology.util.Constants.SERVICE_DATABASE_AGGREGATOR
+import com.example.kaizentechnology.util.Constants.TEL_LINK
 import com.example.kaizentechnology.util.Res
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -74,13 +79,13 @@ fun ServicesPage() {
             serviceTitle = "Database Aggregator",
             serviceImage = Res.Image.serviceImage,
             breakpoint = breakpoint,
-            serviceDesc = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem"
+            serviceDesc = SERVICE_DATABASE_AGGREGATOR
         )
         ServiceDetailComponent(
             serviceTitle = "Admin Support",
-            serviceImage = Res.Image.serviceImage,
+            serviceImage = Res.Image.adminSupportService,
             breakpoint = breakpoint,
-            serviceDesc = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu pretium quis, sem"
+            serviceDesc = SERVICE_ADMIN_SUPPORT
         )
         DynamicServiceComponent(
             serviceTitle = "Solution Provider",
@@ -91,13 +96,13 @@ fun ServicesPage() {
         FooterSection(
             breakpoint = breakpoint,
             onLocationClick = {
-                context.router.navigateTo("https://maps.app.goo.gl/SGEZpu4cATABGVsZA")
+                context.router.navigateTo(MAP_LINK)
             },
             onEmailClick = {
-                context.router.navigateTo("mailto:support@kaizentechnology.org.in")
+                context.router.navigateTo(EMAIL_LINK)
             },
             onPhoneClick = {
-                context.router.navigateTo("tel:7046327745")
+                context.router.navigateTo(TEL_LINK)
             },
             onLogoClick = {
                 context.router.navigateTo(Screen.HomePage.route)

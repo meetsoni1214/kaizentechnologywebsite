@@ -12,10 +12,13 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.styleModifier
+import com.varabyte.kobweb.compose.ui.thenIf
 import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.icons.fa.FaBars
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
+import org.jetbrains.compose.web.css.Position
 import org.jetbrains.compose.web.css.px
 
 @Composable
@@ -30,6 +33,13 @@ fun HeaderSection(
 ) {
     Box(
         modifier = Modifier
+            .thenIf(
+                condition = !isHomePage,
+                other = Modifier
+                    .zIndex(19)
+                    .top(0.px)
+                    .position(Position.Fixed)
+            )
             .fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {

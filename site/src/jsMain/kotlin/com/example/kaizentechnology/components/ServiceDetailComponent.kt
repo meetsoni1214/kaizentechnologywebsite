@@ -8,6 +8,7 @@ import com.example.kaizentechnology.util.JsTheme
 import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextAlign
+import com.varabyte.kobweb.compose.css.functions.RadialGradient
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
@@ -34,6 +35,8 @@ import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toModifier
+import com.varabyte.kobweb.silk.theme.shapes.Shape
+import com.varabyte.kobweb.silk.theme.shapes.clip
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
@@ -54,7 +57,9 @@ fun ServiceDetailComponent(
                 .fillMaxWidth(90.percent),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column {
+            Column(
+                modifier = Modifier.fillMaxWidth(75.percent)
+            ) {
                 ServiceTitle(
                     serviceTitle = serviceTitle,
                     modifier = Modifier
@@ -70,8 +75,10 @@ fun ServiceDetailComponent(
             ServiceImage(
                 img = serviceImage,
                 modifier = Modifier
+                    .borderRadius(30.px)
                     .height(280.px)
-                    .width(380.px)
+//                    .width(380.px)
+                    .fillMaxWidth(25.percent)
                     .margin(left = 40.px))
         }
     } else {
@@ -87,7 +94,8 @@ fun ServiceDetailComponent(
             ServiceImage(
                 img = serviceImage,
                 modifier = Modifier
-                    .height(176.px)
+                    //                    .height(176.px)
+                    .height(200.px)
                     .width(266.px)
                     .margin(bottom = 32.px)
             )
@@ -173,7 +181,8 @@ fun DynamicServiceComponent(
             ServiceImage(
                 img = dynamicService.img,
                 modifier = Modifier
-                    .height(176.px)
+//                    .height(176.px)
+                    .height(200.px)
                     .width(266.px)
                     .margin(bottom = 32.px)
             )
@@ -255,6 +264,7 @@ fun ServiceImage(
         src = img,
         description = "Service Image",
         modifier = modifier
+            .borderRadius(30.px)
     )
 }
 
