@@ -10,10 +10,10 @@ server:
     prod:
       script: "build/dist/js/productionExecutable/kaizentechnology.js"
       siteRoot: ".kobweb/site"
-    cors:
-      hosts:
-        - name: "kaizentechnologywebsite.onrender.com"
-          schemes:
-            - "https"
+  cors:
+    hosts:
+      - name: "kaizentechnologywebsite.onrender.com"
+        schemes:
+          - "https"
 
   port: 8080
