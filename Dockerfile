@@ -2,8 +2,8 @@
 # Variables shared across multiple stages (they need to be explicitly opted
 # into each stage by being declaring there too, but their values need only be
 # specified once).
-#ARG KOBWEB_APP_ROOT=""
-ARG KOBWEB_APP_ROOT="site"
+ARG KOBWEB_APP_ROOT=""
+#ARG KOBWEB_APP_ROOT="site"
 
 FROM eclipse-temurin:17 as java
 
