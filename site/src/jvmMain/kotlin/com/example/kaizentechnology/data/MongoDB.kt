@@ -19,7 +19,7 @@ fun initMongoDB(context: InitApiContext) {
         "org.litote.kmongo.serialization.SerializationClassMappingTypeService"
     )
     System.getenv().forEach { (key, value) ->
-        if (key != null && key == "MONGODB_URI") {
+        if (key != null && key == "MONGODB_URI2") {
             context.data.add(MongoDB(context))
         }
     }
@@ -27,7 +27,7 @@ fun initMongoDB(context: InitApiContext) {
 }
 
 class MongoDB(private val context: InitApiContext): MongoRepository {
-    private val client = MongoClient.create(System.getenv("MONGODB_URI"))
+    private val client = MongoClient.create(System.getenv("MONGODB_URI2"))
     private val database = client.getDatabase(DATABASE_NAME)
     private val userCollection = database.getCollection<User>("user")
     private val inquiryCollection = database.getCollection<Inquiry>("inquiry")
